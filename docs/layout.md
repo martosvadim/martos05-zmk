@@ -11,7 +11,7 @@ Custom keyboard: **12 columns** (C1..C12) × **7 rows** (R1..R7), Colemak base l
 | **R3** | ~     | Q  | W  | F     | P     | G      | J      | L      | U         | Y    | ;    | [      |
 | **R4** | '     | A  | R  | S     | T     | D      | H      | N      | E         | I    | O    | ]      |
 | **R5** | LWin  | Z  | X  | C     | V     | B      | K      | M      | ,         | .    | /    | RWin   |
-| **R6** | M1    | M2 | M3 | Space | Tab   | LShift | RShift | Enter  | Backspace | Home | Up   | End    |
+| **R6** | M1    | M2 | M3 | Space | Tab   | LShift | RShift | Backspace | Enter | Home | Up   | End    |
 | **R7** | M4    | M5 | M6 | —     | LCtrl | LAlt   | RAlt   | RCtrl  | —         | Left | Down | Right  |
 
 > `—` means the key is physically not present on the board.
