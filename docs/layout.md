@@ -190,8 +190,8 @@ kscan0: kscan {
 
 | Signal   | Silkscreen | nRF52840 | ZMK devicetree |
 | -------- | ---------- | -------- | -------------- |
-| TP_DATA  | D0         | P0.06    | `&pro_micro 0` |
-| TP_CLK   | D1         | P0.08    | `&pro_micro 1` |
+| TP_DATA  | D0         | P0.08    | `&pro_micro 0` |
+| TP_CLK   | D1         | P0.06    | `&pro_micro 1` |
 
 Driver: [infused-kim/kb_zmk_ps2_mouse_trackpoint_driver](https://github.com/infused-kim/kb_zmk_ps2_mouse_trackpoint_driver)
 

@@ -2,8 +2,8 @@
  * Trackpoint (PS/2 over UART) for martos05.
  *
  * Wiring:
- *   TP_DATA (SDA) → D0  (&pro_micro 0, P0.06)
- *   TP_CLK  (SCL) → D1  (&pro_micro 1, P0.08)
+ *   TP_DATA (SDA) → D0  (&pro_micro 0, P0.08)
+ *   TP_CLK  (SCL) → D1  (&pro_micro 1, P0.06)
  *   No hardware reset line — relying on external POR circuit.
  *
  * Based on infused-kim's example zmk-config for the kb_zmk_ps2_mouse_
@@ -18,8 +18,8 @@
 // SDA = D0 (high-frequency pin, blue on nice!nano pinout)
 #define MOUSE_PS2_PIN_SDA_PRO_MICRO <&pro_micro 0 GPIO_ACTIVE_HIGH>
 
-// SDA in pinctrl notation — D0 = P0.06
-#define MOUSE_PS2_PIN_SDA_PINCTRL   <NRF_PSEL(UART_RX, 0, 6)>
+// SDA in pinctrl notation — D0 = P0.08 on nice!nano v2
+#define MOUSE_PS2_PIN_SDA_PINCTRL   <NRF_PSEL(UART_RX, 0, 8)>
 
 // UART baud rate for PS/2 — 14400 matches standard IBM/Lenovo trackpoint
 // clock (~14.5 kHz). Change only if logic-analyzer measurements differ.
