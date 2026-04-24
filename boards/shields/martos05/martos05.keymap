@@ -1,0 +1,35 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+// Firmware sends QWERTY-positional scan codes. OS must be set to Colemak —
+// it remaps the scan codes to the Colemak characters printed on the keycaps.
+// Bindings below reflect QWERTY positions; the comment block shows what the
+// user actually types (i.e. Colemak) when the OS layout is active.
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            // Produces on screen (with OS in Colemak):
+            // | Esc   | F1    | F2    | F3    | F4    | F5    | F6    | F7    | F8    | F9    | F10   | Del   |
+            // | =     | 1     | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | 0     | -     |
+            // | `     | Q     | W     | F     | P     | G     | J     | L     | U     | Y     | ;     | [     |
+            // | '     | A     | R     | S     | T     | D     | H     | N     | E     | I     | O     | ]     |
+            // | LGUI  | Z     | X     | C     | V     | B     | K     | M     | ,     | .     | /     | RGUI  |
+            // | M1    | M2    | M3    | Space | Tab   | LSFT  | RSFT  | Enter | BSPC  | Home  | Up    | End   |
+            // | M4    | M5    | M6    |       | LCTL  | LALT  | RALT  | RCTL  |       | Left  | Down  | Right |
+
+            bindings = <
+            &kp ESC      &kp F1       &kp F2       &kp F3       &kp F4       &kp F5       &kp F6       &kp F7       &kp F8       &kp F9       &kp F10      &kp DEL
+            &kp EQUAL    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0       &kp MINUS
+            &kp GRAVE    &kp Q        &kp W        &kp E        &kp R        &kp T        &kp Y        &kp U        &kp I        &kp O        &kp P        &kp LBKT
+            &kp APOS     &kp A        &kp S        &kp D        &kp F        &kp G        &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp RBKT
+            &kp LGUI     &kp Z        &kp X        &kp C        &kp V        &kp B        &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp RGUI
+            &kp LS(F10)  &kp LS(F9)   &kp LC(F2)   &kp SPACE    &kp TAB      &kp LSHFT    &kp RSHFT    &kp RET      &kp BSPC     &kp HOME     &kp UP       &kp END
+            &kp F8       &kp F7       &kp F9                    &kp LCTRL    &kp LALT     &kp RALT     &kp RCTRL                 &kp LEFT     &kp DOWN     &kp RIGHT
+            >;
+        };
+    };
+};

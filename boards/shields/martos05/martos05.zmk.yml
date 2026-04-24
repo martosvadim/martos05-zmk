@@ -1,0 +1,8 @@
+file_format: "1"
+id: martos05
+name: martos05
+type: shield
+requires:
+  - pro_micro
+features:
+  - keys
