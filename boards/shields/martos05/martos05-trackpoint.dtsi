@@ -148,5 +148,9 @@
         status = "okay";
         compatible = "zmk,input-listener-ps2";
         device = <&mouse_ps2>;
+
+        // Physical trackpoint orientation: Y axis is flipped vs the driver's
+        // expected convention — up/down come out swapped. X axis is fine.
+        y-invert;
     };
 };
