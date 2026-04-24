@@ -194,3 +194,33 @@ kscan0: kscan {
 | TP_CLK   | D1         | P0.08    | `&pro_micro 1` |
 
 Driver: [infused-kim/kb_zmk_ps2_mouse_trackpoint_driver](https://github.com/infused-kim/kb_zmk_ps2_mouse_trackpoint_driver)
+
+### Firmware integration
+
+The trackpoint support requires **a ZMK fork** (`infused-kim/zmk` branch
+`pr-testing/mouse_ps2_module_base`) — upstream ZMK has not merged the mouse
+pointer PR yet. This is configured in `config/west.yml`.
+
+Trackpoint-specific devicetree lives in
+`boards/shields/martos05/martos05-trackpoint.dtsi` and is `#include`-d from
+`martos05.overlay`. It contains:
+
+- Pin assignments (SCL=D1, SDA=D0) and the matching pinctrl (`P0.06` for SDA).
+- Reconfiguration of `uart0` to UART-PS/2 mode at 14400 baud.
+- `mouse_ps2` + `mouse_ps2_input_listener` nodes (status = "okay").
+- Interrupt-priority overrides for every nRF52840 peripheral so BLE cannot
+  delay PS/2 service past its 30–50 µs budget.
+
+### Known caveats
+
+- **No reset pin wired** — the trackpoint will initialise only if the board
+  has an external Power-On-Reset circuit (typical capacitor + resistor on the
+  TP_RST line). Without POR some trackpoints fail to enumerate on cold start;
+  a USB re-plug usually works around it.
+- To click / scroll you still need keymap bindings (`&mkp LCLK/RCLK/MCLK`,
+  `&msc SCRL_UP/DOWN`). The base layer currently has none — add them on a
+  mouse layer when needed.
+- The trackpoint only reports through the **current HID output**. On BLE, it
+  moves the cursor on whatever device is on the selected profile; on USB, on
+  the wired host. Switch outputs the same way as the keyboard itself
+  (`Esc+Del → 6/7`).
