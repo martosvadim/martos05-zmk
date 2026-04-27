@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: infused-kim
       url-base: https://github.com/infused-kim
+    - name: martosvadim
+      url-base: https://github.com/martosvadim
   projects:
     # ZMK fork with mouse/pointer support (PR #1751) — required by the
     # PS/2 trackpoint driver module. Upstream ZMK (v0.3) does not include
@@ -13,9 +15,10 @@ manifest:
       revision: pr-testing/mouse_ps2_module_base
       import: app/west.yml
 
-    # PS/2 mouse & trackpoint driver module.
+    # PS/2 mouse & trackpoint driver module — our fork with a fix for
+    # solo RMB/MMB clicks (sync-flag bug in click_buttons).
     - name: kb_zmk_ps2_mouse_trackpoint_driver
-      remote: infused-kim
-      revision: main
+      remote: martosvadim
+      revision: fix/button-sync-flag
   self:
     path: config
