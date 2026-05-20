@@ -2,6 +2,16 @@
 
 Custom keyboard: **12 columns** (C1..C12) × **7 rows** (R1..R7), Colemak base layout.
 
+## Table of Contents
+
+- [Key Matrix](#key-matrix)
+- [Layout strategy: QWERTY-positional firmware + OS Colemak](#layout-strategy-qwerty-positional-firmware--os-colemak)
+- [Windows Colemak + Polish AltGr](#windows-colemak--polish-altgr)
+- [Macro Keys](#macro-keys)
+- [Bluetooth (multi-device)](#bluetooth-multi-device)
+- [Controller](#controller)
+- [Trackpoint](#trackpoint)
+
 ## Key Matrix
 
 |        | C1    | C2 | C3 | C4    | C5    | C6     | C7     | C8     | C9        | C10  | C11  | C12    |
@@ -48,9 +58,104 @@ top/bottom rows are untouched by the Colemak layout.
 Unchanged keys (same position in both layouts): `Q W A H Z X C V B M , . /`
 plus all non-letter keys.
 
+## Windows Colemak + Polish AltGr
+
+Windows does not ship a Polish Colemak layout. This keyboard therefore uses the
+regular Windows Colemak layout and an AutoHotkey v2 script to override AltGr
+combinations:
+
+- `AltGr + /` sends `|`.
+- `AltGr + Shift + /` sends `\`.
+- Polish letters use the Polish Programmer's AltGr positions.
+- Other Colemak multilingual AltGr combinations are blocked.
+
+Save this as `polish-colemak.ahk`:
+
+```ahk
+#Requires AutoHotkey v2.0
+
+<^>!/::SendText "|"
+<^>!+/::SendText "\"
+
+<^>!a::SendText "ą"
+<^>!+a::SendText "Ą"
+
+<^>!c::SendText "ć"
+<^>!+c::SendText "Ć"
+
+<^>!e::SendText "ę"
+<^>!+e::SendText "Ę"
+
+<^>!l::SendText "ł"
+<^>!+l::SendText "Ł"
+
+<^>!n::SendText "ń"
+<^>!+n::SendText "Ń"
+
+<^>!o::SendText "ó"
+<^>!+o::SendText "Ó"
+
+<^>!s::SendText "ś"
+<^>!+s::SendText "Ś"
+
+<^>!x::SendText "ź"
+<^>!+x::SendText "Ź"
+
+<^>!z::SendText "ż"
+<^>!+z::SendText "Ż"
+
+<^>!b::return
+<^>!+b::return
+<^>!d::return
+<^>!+d::return
+<^>!f::return
+<^>!+f::return
+<^>!g::return
+<^>!+g::return
+<^>!h::return
+<^>!+h::return
+<^>!i::return
+<^>!+i::return
+<^>!j::return
+<^>!+j::return
+<^>!k::return
+<^>!+k::return
+<^>!m::return
+<^>!+m::return
+<^>!p::return
+<^>!+p::return
+<^>!q::return
+<^>!+q::return
+<^>!r::return
+<^>!+r::return
+<^>!t::return
+<^>!+t::return
+<^>!u::return
+<^>!+u::return
+<^>!v::return
+<^>!+v::return
+<^>!w::return
+<^>!+w::return
+<^>!y::return
+<^>!+y::return
+```
+
+In AutoHotkey, `<^>!` means AltGr. On Windows, AltGr is represented as
+`Ctrl + Alt`.
+
+### Autostart
+
+To start the script automatically after login:
+
+1. Install AutoHotkey v2.
+2. Press `Win + R`.
+3. Run `shell:startup`.
+4. Put a shortcut to `polish-colemak.ahk` into that folder.
+
 ## Macro Keys
 
-`M*` keys send hotkey combinations:
+`M*` keys are programmable hotkey slots. Until a slot is recorded, it uses the
+default binding below:
 
 | Key | Combination   |
 |-----|---------------|
@@ -60,6 +165,31 @@ plus all non-letter keys.
 | M4  | F8            |
 | M5  | F7            |
 | M6  | F9            |
+
+Each slot stores one hotkey: any combination of `Ctrl`/`Shift`/`Alt`/`Gui`
+modifiers plus one main key. Examples: `Ctrl+Shift+F3`, `Gui+Alt+W`,
+`Shift+F2`.
+
+### Programming M1-M6
+
+Programming is done from the BT/settings layer:
+
+1. Press `Esc+Del` to enter the BT/settings layer.
+2. Press the target macro key, for example `M1`, to start recording slot 1.
+3. Press the desired hotkey, for example `Shift+F2`.
+4. Press the same macro key again, for example `M1`, to save.
+5. Press `Esc+Del` to return to the default layer.
+
+Recording a slot without pressing a main key clears that slot and restores its
+default binding.
+
+Limitations:
+
+- This records hotkeys, not key sequences.
+- If several main keys are pressed while recording, the last one wins.
+- The recorded keys are also sent to the connected host during recording.
+- Mouse actions, layer changes, Bluetooth actions, and timed sequences are not
+  recorded.
 
 ## Bluetooth (multi-device)
 

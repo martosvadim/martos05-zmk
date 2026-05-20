@@ -12,6 +12,19 @@
 #define BT  1
 
 / {
+    behaviors {
+        phk: programmable_hotkey {
+            compatible = "zmk,behavior-programmable-hotkey";
+            #binding-cells = <1>;
+            defaults = <LS(F10) LS(F9) LC(F2) F8 F7 F9>;
+        };
+
+        phk_rec: programmable_hotkey_record {
+            compatible = "zmk,behavior-programmable-hotkey-record";
+            #binding-cells = <1>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -44,8 +57,8 @@
             &kp GRAVE    &kp Q        &kp W        &kp E        &kp R        &kp T        &kp Y        &kp U        &kp I        &kp O        &kp P        &kp LBKT
             &kp APOS     &kp A        &kp S        &kp D        &kp F        &kp G        &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp RBKT
             &kp LGUI     &kp Z        &kp X        &kp C        &kp V        &kp B        &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp RGUI
-            &kp LS(F10)  &kp LS(F9)   &kp LC(F2)   &kp SPACE    &kp TAB      &kp LSHFT    &kp RSHFT    &kp BSPC     &kp RET      &kp HOME     &kp UP       &kp END
-            &kp F8       &kp F7       &kp F9                    &kp LCTRL    &kp LALT     &kp RALT     &kp RCTRL                 &kp LEFT     &kp DOWN     &kp RIGHT
+            &phk 0       &phk 1       &phk 2       &kp SPACE    &kp TAB      &kp LSHFT    &kp RSHFT    &kp BSPC     &kp RET      &kp HOME     &kp UP       &kp END
+            &phk 3       &phk 4       &phk 5                    &kp LCTRL    &kp LALT     &kp RALT     &kp RCTRL                 &kp LEFT     &kp DOWN     &kp RIGHT
             >;
         };
 
@@ -64,8 +77,8 @@
             &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans
             &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans
             &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans
-            &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans
-            &trans           &trans           &trans                            &trans           &trans           &trans           &trans                            &trans           &trans           &trans
+            &phk_rec 0       &phk_rec 1       &phk_rec 2       &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans           &trans
+            &phk_rec 3       &phk_rec 4       &phk_rec 5                        &trans           &trans           &trans           &trans                            &trans           &trans           &trans
             >;
         };
     };

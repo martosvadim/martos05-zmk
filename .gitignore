@@ -2,3 +2,4 @@
 .idea
 .zmk/
 firmware/
+zmk-programmable-hotkey/

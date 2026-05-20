@@ -20,5 +20,10 @@ manifest:
     - name: kb_zmk_ps2_mouse_trackpoint_driver
       remote: martosvadim
       revision: fix/button-sync-flag
+
+    # Runtime-programmable M1-M6 hotkey slots.
+    - name: zmk-programmable-hotkey
+      remote: martosvadim
+      revision: main
   self:
     path: config
